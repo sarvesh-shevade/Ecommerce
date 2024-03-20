@@ -6,27 +6,32 @@ import Metadata from '../layout/Metadata.js';
 import { getProduct } from '../../actions/productAction.js';
 import {useDispatch,useSelector} from "react-redux";
 
+import Loader from "../layout/Loader/loader.js";
+import { useAlert } from "react-alert";
 
-const product ={
-    name:"Iphone",
-    price:"₹50000",
-    image:[{url:"https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/m/o/b/-original-imaghx9qkugtbfrn.jpeg?q=70&crop=false"}],
-    _id: "01"
-};
+
 
 const Home = () => {
+
+  const alert = useAlert()
 
   const dispatch = useDispatch();
   const { loading,error,products,productsCount } = useSelector(
     (state) => state.products
   )
   useEffect(() => {
+
+    if(error){
+      return alert.error(error);
+    }
     dispatch(getProduct());
-  },[dispatch]);
+  },[dispatch,error]);
   
 
   return (
     <Fragment>
+
+    {loading ? <Loader/> : <Fragment>
       <Metadata title="Ecommerce"/>
 
     <div className='banner'>
@@ -45,13 +50,14 @@ const Home = () => {
         
         {products && products.map(product =>(
           <Product product={product}/>
-        )
-          
-
-          )};
+        ))};
         </div>
     
+    </Fragment>}
+
     </Fragment>
+
+
   )
 }
 
