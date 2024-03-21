@@ -12,7 +12,7 @@ export const getProduct = () => async (dispatch) => {
     try{
 
         dispatch({type:ALL_PRODUCT_REQUEST});
-        const {data}  = await axios.get("http://192.168.1.23:8080/home/getList");
+        const {data}  = await axios.get("http://localhost:8080/home/getList");
         
         dispatch({
             type:ALL_PRODUCT_SUCCESS,
