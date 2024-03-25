@@ -2,6 +2,9 @@ import {
     ALL_PRODUCT_FAIL,
     ALL_PRODUCT_SUCCESS,
     ALL_PRODUCT_REQUEST,
+    PRODUCT_DETAILS_REQUEST,
+    PRODUCT_DETAILS_SUCCESS,
+    PRODUCT_DETAILS_FAIL,
     CLEAR_ERRORS
     } from "../constants/prodConstants"
 

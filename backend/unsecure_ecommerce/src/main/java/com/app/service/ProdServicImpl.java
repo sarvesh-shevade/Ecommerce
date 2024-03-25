@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.app.dao.ProductDao;
 import com.app.entities.Product;
 import com.app.outputDTOs.ProductDTO;
+import com.app.outputDTOs.ProductDetailsDTO;
 
 @Service
 @Transactional
@@ -30,7 +31,14 @@ public class ProdServicImpl implements ProdService {
 		return list.stream()	
 			.map(e->mapper.map(e, ProductDTO.class))
 			.collect(Collectors.toList());
-		
 	}
+
+	@Override
+	public ProductDetailsDTO getProductDeatails(long id) {
+		// TODO Auto-generated method stub
+		return mapper.map(prodDao.findById(id),ProductDetailsDTO.class);
+	}
+	
+	
 
 }

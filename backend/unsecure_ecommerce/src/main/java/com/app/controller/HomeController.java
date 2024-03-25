@@ -7,8 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 
+import com.app.outputDTOs.ApiResponse;
 import com.app.service.ProdService;
 
 @RestController
@@ -24,7 +27,13 @@ public class HomeController {
 	@GetMapping("/getList")
 	public ResponseEntity<?> viewProducts() {
 		
-		return ResponseEntity.status(HttpStatus.OK).body(prodService.getProductList());
+	return ResponseEntity.status(HttpStatus.OK).body(prodService.getProductList());
+	}
+	
+	@GetMapping("/getPrdouctDetails/{id}")
+	public ResponseEntity<?> viewSingleProduct(@RequestParam long id)
+	{
+		return ResponseEntity.status(HttpStatus.OK).body(prodService.getProductDeatails(id));
 		
 	}
 
